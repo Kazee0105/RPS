@@ -1,72 +1,70 @@
-//Returns a Rock, Paper, or Scissor
-function getComputerChoice(){
-    var number = Math.floor(Math.random() * 3);
-    let choice = "";
-
-    if(number === 0){
-        choice = "rock"
+function getCompChoice() {
+    let choiceArr = ['Paper', 'Rock', 'Scissor'];
+    let randomChoice = Math.floor(Math.random() * choiceArr.length);
+    return choiceArr[randomChoice];;
+  }
+  /* console.log(getCompChoice()) */
+  
+  function playRound(p1, p2) {
+    let p1choice = p1.charAt(0).toUpperCase() + p1.slice(1).toLowerCase();
+    let msg = "";
+    let results = 0;
+    let vsArr = [p1, p2];
+    let vsStr = vsArr.toString().toLowerCase();
+    
+    switch (vsStr) {
+      case ("rock,scissor"):
+      case ("scissor,paper"):
+      case ("paper,rock"):
+        msg = "You Win! " + p1choice + " beats " + p2;
+        break;
+      case ("rock,paper"):
+      case ("scissor,rock"):
+      case ("paper,scissor"):
+        msg = "You Lose! " + p2 + " beats " + p1choice;
+        break;
+       case ("rock,rock"):
+       case ("scissor,scissor"):
+       case ("paper,paper"):
+           msg = "Tie! " + p1choice + " beats " + p2;
     }
-    else if(number === 1){
-        choice = "paper"
+    console.log(msg)
+    
+    if(msg.includes("Win")){
+        results = 2;
+    }
+    else if(msg.includes("Lose")){
+        results = -2;
     }
     else {
-        choice = "scissor"
-    }
-    return choice;
-}
-
-
-//function to play round
-function playRound(playerSelection, computerSelection) {
-    var outcome = "empty";
-    var compare = new Array(playerSelection, computerSelection).toString();
-    
-    //Winning Arrays
-    var win1 = new Array("rock","scissor").toString();
-    var win2 = new Array("scissor","paper").toString();
-    var win3 = new Array("paper","rock").toString();
-
-    //Losing Arrays
-    var lose1 = new Array("rock","paper").toString();
-    var lose2 = new Array("scissor","rock").toString();
-    var lose3 = new Array("paper","scissor").toString();
-
-    //Tie Arrays
-    var tie1 = new Array("rock","rock").toString();
-    var tie2 = new Array("scissor","scissor").toString();
-    var tie3 = new Array("paper","paper").toString();
-
-    if(compare === win1 || compare === win2){
-        let compareArray = compare.split(",")
-        outcome = "You Win! " + compareArray[0] + " beats " + compareArray[1];
-    }
-    else if (compare === win3){
-        let compareArray = compare.split(",")
-        outcome = "You Win! " + compareArray[0] + " beats " + compareArray[1];
+        results = 0;
     }
     
-    else if (compare == lose1 || compare === lose2){
-        let compareArray = compare.split(",")
-        outcome = "You Lose! " + compareArray[1] + " beats " + compareArray[0];
-    }
-    else if(compare === lose3){
-        let compareArray = compare.split(",")
-        outcome = "You Lose! " + compareArray[1] + " beats " + compareArray[0];
-    }
-    else {
-        let compareArray = compare.split(",")
-        outcome = "You Tied! " + compareArray[0] + " ties " + compareArray[1];
-    }
-    return outcome;
+    return results;
   }
-   
-  let playerPrompt = prompt("Choose Rock, Paper or Scissor");
-  let playerSelection = playerPrompt.toLowerCase();
-  const computerSelection = getComputerChoice();
-  console.log(playRound(playerSelection, computerSelection))
-  console.log(game());
-
-  function game(){
-    return "this game function is running"
+  /* plays 1 round and returns a message */
+  
+  function game() {
+      let round1 = playRound(prompt(),getCompChoice());
+    let round2 = playRound(prompt(),getCompChoice());
+    let round3 = playRound(prompt(),getCompChoice());
+    let round4 = playRound(prompt(),getCompChoice());
+    let round5 = playRound(prompt(),getCompChoice());
+    
+    let final = ""
+    let sum = round1 + round2 + round3 + round4 + round5
+    
+    if(sum < 0){
+        final = "You Lost"
+    }
+    else if (sum >= 2){
+     final = "You Win"
+    }
+    else{
+        final = "Tied"
+    }
+    return final;
   }
+  
+  console.log(game())
   
