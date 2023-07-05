@@ -43,28 +43,7 @@ function getCompChoice() {
     return results;
   }
   /* plays 1 round and returns a message */
+
   
-  function game() {
-      let round1 = playRound(prompt(),getCompChoice());
-    let round2 = playRound(prompt(),getCompChoice());
-    let round3 = playRound(prompt(),getCompChoice());
-    let round4 = playRound(prompt(),getCompChoice());
-    let round5 = playRound(prompt(),getCompChoice());
-    
-    let final = ""
-    let sum = round1 + round2 + round3 + round4 + round5
-    
-    if(sum < 0){
-        final = "You Lost"
-    }
-    else if (sum >= 2){
-     final = "You Win"
-    }
-    else{
-        final = "Tied"
-    }
-    return final;
-  }
-  
-  console.log(game())
+  console.log(playRound('rock',getCompChoice()))
   
