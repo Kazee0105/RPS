@@ -3,7 +3,6 @@ function getCompChoice() {
     let randomChoice = Math.floor(Math.random() * choiceArr.length);
     return choiceArr[randomChoice];;
   }
-  /* console.log(getCompChoice()) */
   
   function playRound(p1, p2) {
     let p1choice = p1.charAt(0).toUpperCase() + p1.slice(1).toLowerCase();
@@ -43,7 +42,4 @@ function getCompChoice() {
     return results;
   }
   /* plays 1 round and returns a message */
-
-  
-  console.log(playRound('rock',getCompChoice()))
   
